@@ -11,9 +11,9 @@ namespace Project_Management.Services
             _developerRepository = developerRepository;
         }
 
-        Task<Developer> IDeveloperService.GetDeveloperByUserId(Guid id)
+        public Task<Developer> GetDeveloperByUserId(Guid id)
         {
-            return _developerRepository.GetDeveloperByUserId(id);
+            return  _developerRepository.GetDeveloperByUserId(id);
         }
     }
 }

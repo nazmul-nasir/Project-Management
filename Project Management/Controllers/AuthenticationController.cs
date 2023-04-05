@@ -18,16 +18,20 @@ namespace Project_Management.Controllers
         private readonly IDeveloperService _developerService;
         private readonly IUserService _userService;
         private readonly IAdminService _adminService;
-        private readonly IAuthService _authService;
         private readonly UserManager<User> _userManager;
         private readonly RoleManager<IdentityRole> roleManager;
         private readonly AppSettings _appSettings;
-        public AuthenticationController(IDeveloperService developerService, IUserService userService, IAdminService adminService, IAuthService authService, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IOptions<AppSettings> appSettings)
+
+        public AuthenticationController(IDeveloperService developerService, 
+            IUserService userService, 
+            IAdminService adminService, 
+            UserManager<User> userManager, 
+            RoleManager<IdentityRole> roleManager, 
+            IOptions<AppSettings> appSettings)
         {
             _developerService = developerService;
             _userService = userService;
             _adminService = adminService;
-            _authService = authService;
             this._userManager = userManager;
             this.roleManager = roleManager;
             _appSettings = appSettings.Value;
@@ -47,7 +51,7 @@ namespace Project_Management.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Email Address already exist" });
             }
 
-            var admin = new User
+            var admin = new Admin
             {
                 Email = registrationDto.Email,
                 UserName = registrationDto.UserName,
@@ -88,7 +92,7 @@ namespace Project_Management.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "Email Address already exist" });
             }
 
-            var developer = new User
+            var developer = new Developer
             {
                 Email = registrationDto.Email,
                 Role = Role.Developer,
@@ -152,7 +156,6 @@ namespace Project_Management.Controllers
                 });
             }
             return Unauthorized();
-
         }
     }
 }

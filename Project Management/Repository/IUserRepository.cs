@@ -4,6 +4,5 @@ namespace Project_Management.Repository
 {
     public interface IUserRepository : IRepository<User>
     {
-        IEnumerable<User> GetAllDevelopers();
     }
 }

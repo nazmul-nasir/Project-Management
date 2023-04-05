@@ -62,8 +62,6 @@ namespace Project_Management.Controllers
             var roleClaim = identity.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role);
             var userRole = roleClaim?.Value;
 
-            //var userRole = _httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.Role)?.Value;
-
             if (userRole == Role.Developer)
             {
                 var developer = await _deverloperService.GetDeveloperByUserId(userId);

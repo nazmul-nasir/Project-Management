@@ -11,25 +11,18 @@ namespace Project_Management.Repository
 
         public void AddDeveloperToProject(Project project, Developer developer)
         {
-            project.Developers ??= new List<Developer>();
-            var existingDeveloper = project.Developers.SingleOrDefault(d => d.Id == developer.Id && d.ProjectId == project.ProjectId);
-            if (existingDeveloper == null)
-            {
-                project.Developers.Add(developer);
-            }
-            else
-            {
-                existingDeveloper.Role = developer.Role;
-                _context.Entry(existingDeveloper).State = EntityState.Modified;
-            }
+            developer.ProjectId = project.ProjectId;
+            _context.Entry(developer).State = EntityState.Modified;
+            _context.SaveChanges();
+
         }
 
 
-        public Project GetProjectWithDevelopers(string userId)
+        public Project GetProjectWithDevelopers(string developerId)
         {
             return _context.Projects
-         .Include(p => p.Developers)
-         .SingleOrDefault(p => p.Developers.Any(d => d.Id == userId));
+                            .Include(p => p.Developers)
+                            .SingleOrDefault(p => p.Developers.Any(d => d.Id == developerId));
 
         }
     }

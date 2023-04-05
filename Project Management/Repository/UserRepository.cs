@@ -8,11 +8,6 @@ namespace Project_Management.Repository
         public UserRepository(DataContext context) : base(context)
         {
         }
-
-        public IEnumerable<User> GetAllDevelopers()
-        {
-            return entities.OfType<Developer>().Include(d => d.Project).ToList();
-        }
     }
 
 }

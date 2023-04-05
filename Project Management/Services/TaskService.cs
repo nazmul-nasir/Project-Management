@@ -34,7 +34,6 @@ namespace Project_Management.Services
             }
             item.ProjectId = project.ProjectId;
 
-
             _repository.Add(item);
         }
     }

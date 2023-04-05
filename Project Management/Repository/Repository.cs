@@ -39,7 +39,6 @@ namespace Project_Management.Repository
         {
             entities.Update(entity);
             _context.SaveChanges();
-
         }
 
         public void Remove(TEntity entity)

@@ -13,8 +13,7 @@ namespace Project_Management.Repository
         public async Task<Developer> GetDeveloperByUserId(Guid id)
         {
             return  await _dataContext.Developers
-        .Include(d => d.Project)
-        .FirstOrDefaultAsync(d => Guid.Parse(d.Id) == id);
+        .FirstOrDefaultAsync(d => string.Equals( d.Id, id.ToString()));
         }
     }
 }
